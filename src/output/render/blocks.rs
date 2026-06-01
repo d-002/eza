@@ -51,7 +51,9 @@ impl f::Blocksize {
         };
 
         let symbol = prefix.symbol();
-        let number = if n.round() < 10_f64 {
+        // perform rounding before formatting for edge cases near n = 10
+        let rounded_1dp = (n * 10_f64).round() / 10_f64;
+        let number = if rounded_1dp < 10_f64 {
             numerics.format_float(n, 1)
         } else {
             numerics.format_int(n.round() as isize)
