@@ -75,7 +75,7 @@ impl f::Size {
         };
 
         let symbol = prefix.symbol();
-        let number = if n < 10_f64 {
+        let number = if n.round() < 10_f64 {
             numerics.format_float(n, 1)
         } else {
             numerics.format_int(n.round() as isize)
